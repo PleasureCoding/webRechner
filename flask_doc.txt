@@ -1,0 +1,64 @@
+  171  virtualenv flask
+  172  sudo apt install virtualenv
+  173  virtualenv flask
+  174  cd flask/
+  175  source bin/activate
+  176  pip install flask
+  177  python3 webcal.py 
+  178  sudo apt install python3-flask
+  179  export FLASK_APP=hello.py
+  180  flask run
+  181  export FLASK_APP=webcal.py
+  182  flask run
+  183  history
+ 
+export FLASK_DEBUG=1
+
+175 + 181
+
+http://flask.pocoo.org/docs/1.0/quickstart/
+
+"templates" enthält HTML Files
+--> render_template('hello.html', name=name)
+
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+erstes return blockt alles danach weg...
+
+Funktionen abspielen... und DANN irgendwann am Ende return!
+
+ctrl + shift + ´   # Terminal
+
+Str + B  # entfernt die Ordnerstruktur rechts
+
+Str + +/-   # Fenster kleiner/grösser
+
+## Variablen in Template einfügen:
+return render_template('hello.html', value = text)
+--> <p> Der Text lautet: {{ value }}</p>
+
+https://www.simongriffee.com/notebook/form-to-txt/     # da shit 8)
+
+Javascript -> Funktionen funktionieren manchmal nicht, wenn Semikolon oder sowas fehlt, Syntax-Mist. Zeigt keinen Fehler bei der Ausführung im Browser an.. geht dann aber nicht... -.-
+
+man kann in VS Code zwei Fenster parallel offen haben
+
+Str + Shirt + Pfeil   # mehrere Zeilen markieren
+
+markieren und str+k str+c  # alles kommentieren
+markieren und str+k str+u  # alles kommentieren
+
+https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+
+zwei Terminals auch möglich
+
+socket.error: [Errno 98] Address already in use  ==>  close port... You already have a process bound to the default port (8000)
+ps -fA | grep python
+
+## pass multiple parameters to the view
+--> https://stackoverflow.com/questions/12096522/render-template-with-multiple-variables
+
+
+
+
+
