@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title> Rechen-Meister </title>
+  
+  <style type="text/css">
+    body {font-family:verdana, sans-serif; color:#666; background:#fafafa; padding:20px; text-align:center;}
+
+    #page {text-align:left; max-width:500px; margin: auto;} 
+
+    h1 {font-size:25px; text-align:center}
+    
+    label {font-size:19px;}
+        
+    button {margin-left:150px; padding:5px; margin-top:15px; font-size:16px;}
+    
+    input, textarea {width:400px; font-size:16px; margin:5px; padding:5px; border:2px solid #d53032;}
+</style>
+  
+  <script type="text/javascript">
+
+    function saveFormAsTextFile()
+        // Based on https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
+        {
+        var textToSave =
+
+        document.getElementById('title').value
+
+          
+        var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+        console.log(textToSaveAsBlob)  // legt file object an
+
+
+        var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+        console.log(textToSaveAsURL) // blob:null/04fc104a-2b3b-4631-96a1-55639466766c
+
+
+        var fileNameToSaveAs = document.getElementById("filename").value;
+        console.log(fileNameToSaveAs)   // filename
+
+        var downloadLink = document.createElement("a");
+        console.log(downloadLink)    // Gerüst für Download-Link erstellen "a-tag"
+
+        // hier wird der download-Link "befüllt":
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        downloadLink.href = textToSaveAsURL;
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+
+        // den eben voll befüllten downloadLink in den Body einfügen
+        document.body.appendChild(downloadLink);  // https://www.w3schools.com/jsref/met_node_appendchild.asp
+
+        downloadLink.click();
+        }
+
+    function destroyClickedElement(event)
+        {
+        document.body.removeChild(event.target);
+        }
+  </script>
+</head>
+
+
+
+
+<body>
+
+    <a href="{{ url_for('final') }}"></a>
+
+    <div id="page">
+      
+      <h1>Rechenübung</h1>
+    
+      <p>{{ text }} </p>
+      <!--
+      <p> Das Ergebnis lautet: {{ resultat }} </p>
+      -->
+      <label for="title">
+        <i>Ergebnis</i> <!-- =title - input example -->
+        <input id="title" size="40" placeholder="Ergebnis der Aufgabe">
+      </label>
+      
+      <br>
+            
+      <label for="filename">
+        <i>Filename</i>
+        <input id="filename" value="" size="40" placeholder="output.txt">
+      </label>
+      
+      <button onclick="saveFormAsTextFile()">
+        Speichern
+      </button>
+      
+    </div>
+  </body>
+  </html>
